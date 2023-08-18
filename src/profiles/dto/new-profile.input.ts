@@ -21,7 +21,7 @@ enum PlayType {
 }
 
 @InputType()
-class MusicDataInput {
+export class MusicDataInput {
   @Field()
   music_name: string;
 
