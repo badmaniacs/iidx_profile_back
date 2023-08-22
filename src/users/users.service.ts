@@ -9,6 +9,7 @@ export class UsersService {
   async createUser(params: {
     username: User[`username`];
     password: User[`password`];
+    email: User[`email`];
   }) {
     const { username, password } = params;
 
@@ -16,6 +17,7 @@ export class UsersService {
       data: {
         username,
         password,
+        email,
       },
     });
 

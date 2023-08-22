@@ -14,4 +14,7 @@ export class User {
 
   @Field(() => String)
   password: UserDB['password'];
+
+  @Field(() => String)
+  email: UserDB['email'];
 }

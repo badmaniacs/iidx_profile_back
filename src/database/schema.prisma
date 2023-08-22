@@ -15,6 +15,7 @@ model User {
   createAt    DateTime      @default(now())
   username    String        @unique
   password    String
+  email       String        @unique
   profileData ProfileData[]
 }
 
