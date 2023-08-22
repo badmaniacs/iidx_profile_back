@@ -11,7 +11,7 @@ export class UsersService {
     password: User[`password`];
     email: User[`email`];
   }) {
-    const { username, password } = params;
+    const { username, password, email } = params;
 
     const user = await this.repository.createUser({
       data: {
