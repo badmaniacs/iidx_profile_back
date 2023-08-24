@@ -31,6 +31,10 @@ export class UsersService {
     return this.repository.getUserByUsername(username);
   }
 
+  async getUserByEmail(email: string): Promise<User | null> {
+    return this.repository.getUserByEmail(email);
+  }
+
   async updateUser(id: number, newData: Partial<User>): Promise<User | null> {
     return this.repository.updateUser(id, newData);
   }

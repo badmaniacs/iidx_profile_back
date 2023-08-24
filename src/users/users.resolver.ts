@@ -2,6 +2,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from 'src/users/models/users.model';
 import { UsersService } from './users.service';
 import { CreateUserInput, UpdateUserInput } from './dto/new-user.input';
+import { ErrorException, ErrorCode } from 'src/custom.error';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -22,6 +23,16 @@ export class UsersResolver {
   @Mutation(() => User)
   async createUser(@Args('input') input: CreateUserInput): Promise<User> {
     const { username, password, email } = input;
+    const existingUser = await this.userService.getUserByUsername(username);
+    const existingEmailUser = await this.userService.getUserByEmail(email);
+
+    if (existingUser && existingEmailUser) {
+      throw new ErrorException(ErrorCode.DUPLICATE_USERNAME_AND_EMAIL);
+    } else if (existingUser) {
+      throw new ErrorException(ErrorCode.DUPLICATE_USERNAME);
+    } else if (existingEmailUser) {
+      throw new ErrorException(ErrorCode.DUPLICATE_EMAIL);
+    }
     return this.userService.createUser({ username, password, email });
   }
 
