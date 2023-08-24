@@ -1,4 +1,4 @@
-import { Field, InputType, PickType } from '@nestjs/graphql';
+import { Field, InputType, PickType, OmitType } from '@nestjs/graphql';
 import { IsEmail, IsString, Length, IsNotEmpty } from 'class-validator';
 
 @InputType()
@@ -21,3 +21,6 @@ export class CreateUserInput {
 
 @InputType()
 export class UpdateUserInput extends PickType(CreateUserInput, ['password']) {}
+
+@InputType()
+export class LoginUserInput extends OmitType(CreateUserInput, ['email']) {}

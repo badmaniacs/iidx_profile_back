@@ -44,6 +44,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input LoginUserInput {
+  password: String!
+  username: String!
+}
+
 type Music {
   clear_type: String!
   difficulty: String!
@@ -75,6 +80,7 @@ input MusicInput {
 }
 
 type Mutation {
+  LoginUser(input: LoginUserInput!): User
   createProfile(input: CreateProfileInput!): Profile!
   createUser(input: CreateUserInput!): User!
   deleteUser(id: Float!): User

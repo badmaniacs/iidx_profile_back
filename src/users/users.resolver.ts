@@ -1,7 +1,11 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from 'src/users/models/users.model';
 import { UsersService } from './users.service';
-import { CreateUserInput, UpdateUserInput } from './dto/new-user.input';
+import {
+  CreateUserInput,
+  LoginUserInput,
+  UpdateUserInput,
+} from './dto/new-user.input';
 import { ErrorException, ErrorCode } from 'src/custom.error';
 
 @Resolver(() => User)
@@ -47,5 +51,10 @@ export class UsersResolver {
   @Mutation(() => User, { nullable: true })
   async deleteUser(@Args('id') id: number): Promise<User | null> {
     return this.userService.deleteUser(id);
+  }
+
+  @Mutation(() => User, { nullable: true })
+  async LoginUser(@Args('input') input: LoginUserInput): Promise<User | null> {
+    return this.userService.loginUser(input);
   }
 }
