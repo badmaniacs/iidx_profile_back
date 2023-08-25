@@ -31,4 +31,5 @@ model ProfileData {
   arena     Json
   radar     Json
   musicData Json
+  ver       Int
 }

@@ -137,4 +137,7 @@ export class Profile {
 
   @Field(() => MusicData)
   musicData: ProfileDB['musicData'];
+
+  @Field(() => Int)
+  ver: ProfileDB['ver'];
 }

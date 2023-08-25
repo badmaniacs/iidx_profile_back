@@ -97,6 +97,7 @@ type Profile {
   musicData: MusicData!
   radar: RadarData!
   region: String!
+  ver: Int!
 }
 
 type Query {

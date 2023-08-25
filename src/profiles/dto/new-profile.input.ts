@@ -137,4 +137,7 @@ export class CreateProfileInput {
 
   @Field(() => MusicInput)
   musicData: MusicInput;
+
+  @Field()
+  ver: number;
 }
