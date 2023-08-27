@@ -7,10 +7,14 @@ import {
   UpdateUserInput,
 } from './dto/new-user.input';
 import { ErrorException, ErrorCode } from 'src/custom.error';
+import { JwtService } from '@nestjs/jwt';
 
 @Resolver(() => User)
 export class UsersResolver {
-  constructor(private readonly userService: UsersService) {}
+  constructor(
+    private readonly userService: UsersService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   @Query(() => User, { nullable: true })
   async getUserById(@Args('id') id: number): Promise<User | null> {
@@ -55,6 +59,15 @@ export class UsersResolver {
 
   @Mutation(() => User, { nullable: true })
   async LoginUser(@Args('input') input: LoginUserInput): Promise<User | null> {
-    return this.userService.loginUser(input);
+    const user = await this.userService.loginUser(input);
+
+    if (!user || user.password !== input.password) {
+      return null;
+    }
+    const payload = { username: user.username, sub: user.id };
+    const accessToken = this.jwtService.sign(payload); // JWT 생성
+
+    // 클라이언트에게 JWT 반환
+    return { ...user, accessToken };
   }
 }

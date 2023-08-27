@@ -17,4 +17,7 @@ export class User {
 
   @Field(() => String)
   email: UserDB['email'];
+
+  @Field(() => String)
+  accessToken?: string;
 }

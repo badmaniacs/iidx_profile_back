@@ -31,6 +31,7 @@ input CreateProfileInput {
   radar: RadarInput!
   region: String!
   userId: Float!
+  ver: Float!
 }
 
 input CreateUserInput {
@@ -141,6 +142,7 @@ input UpdateUserInput {
 }
 
 type User {
+  accessToken: String!
   createAt: DateTime!
   email: String!
   id: Int!

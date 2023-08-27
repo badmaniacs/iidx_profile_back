@@ -6,6 +6,7 @@ import { PrismaModule } from './database/prisma.module';
 import { ProfilesModule } from './profiles/profiles.module';
 import { GraphQLError } from 'graphql';
 import { ErrorException, ErrorDto } from './custom.error';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -24,6 +25,11 @@ import { ErrorException, ErrorDto } from './custom.error';
 
         return error;
       },
+    }),
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_KEY,
+      signOptions: { expiresIn: '1d' },
     }),
     UsersModule,
     ProfilesModule,

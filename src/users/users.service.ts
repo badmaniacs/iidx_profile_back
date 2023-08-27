@@ -1,11 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { UsersRepository } from './users.repository';
 import { CreateUserInput, LoginUserInput } from './dto/new-user.input';
+import { v4 as uuidv4 } from 'uuid';
+import { RedisClientType } from 'redis';
 
 @Injectable()
 export class UsersService {
-  constructor(private repository: UsersRepository) {}
+  constructor(
+    private repository: UsersRepository,
+    @Inject('REDIS_CLIENT') private redis: RedisClientType,
+  ) {}
 
   async createUser(data: CreateUserInput) {
     const user = await this.repository.createUser(data);
@@ -34,5 +39,26 @@ export class UsersService {
 
   async loginUser(data: LoginUserInput) {
     return this.repository.LoginUser(data);
+  }
+
+  async generatePass(data: { username: string; id: number }) {
+    const pass = uuidv4();
+    await this.redis.set(pass, JSON.stringify({ ...data }), { EX: 1800 });
+    return pass;
+  }
+
+  async validatePass(pass: string) {
+    const passData = await this.redis.get(pass);
+
+    if (!passData) {
+      return { valid: false };
+    }
+
+    const { userid, username } = JSON.parse(passData);
+    return { userid, username };
+  }
+
+  async deletePass(pass: string) {
+    await this.redis.del(pass);
   }
 }
