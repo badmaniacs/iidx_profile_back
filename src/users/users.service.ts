@@ -48,14 +48,13 @@ export class UsersService {
   }
 
   async validatePass(pass: string) {
+    console.log(pass);
     const passData = await this.redis.get(pass);
-
+    console.log(passData);
     if (!passData) {
-      return { valid: false };
+      return false;
     }
-
-    const { userid, username } = JSON.parse(passData);
-    return { userid, username };
+    return JSON.parse(passData);
   }
 
   async deletePass(pass: string) {

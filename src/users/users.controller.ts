@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -11,12 +11,12 @@ export class UsersController {
   }
 
   @Get('/pass')
-  async validatePass(pass: string) {
-    await this.usersService.validatePass(pass);
+  async validatePass(@Query('uuid') uuid: string) {
+    return await this.usersService.validatePass(uuid);
   }
 
   @Delete('/pass')
-  async deletePass(pass: string) {
-    await this.usersService.deletePass(pass);
+  async deletePass(@Query('uuid') uuid: string) {
+    return await this.usersService.deletePass(uuid);
   }
 }
