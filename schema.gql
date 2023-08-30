@@ -28,6 +28,7 @@ input CreateProfileInput {
   djName: String!
   iidxId: String!
   musicData: MusicInput!
+  qpro: String!
   radar: RadarInput!
   region: String!
   userId: Float!
@@ -96,6 +97,7 @@ type Profile {
   id: Int!
   iidxId: String!
   musicData: MusicData!
+  qpro: String!
   radar: RadarData!
   region: String!
   ver: Int!

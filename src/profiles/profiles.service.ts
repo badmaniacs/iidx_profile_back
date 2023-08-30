@@ -24,6 +24,7 @@ export class ProfilesService {
       iidxId: data.iidxId,
       class: data.class,
       arena: data.arena,
+      qpro: data.qpro,
       radar: {
         SP: JSON.stringify(data.radar.SP),
         DP: JSON.stringify(data.radar.DP),

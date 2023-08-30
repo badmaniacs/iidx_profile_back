@@ -126,6 +126,9 @@ export class Profile {
   @Field(() => String)
   iidxId: ProfileDB['iidxId'];
 
+  @Field(() => String)
+  qpro: ProfileDB['qpro'];
+
   @Field(() => ClassData)
   class: ProfileDB['class'];
 

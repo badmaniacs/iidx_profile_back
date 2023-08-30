@@ -118,6 +118,9 @@ export class CreateProfileInput {
   @Field()
   iidxId: string;
 
+  @Field()
+  qpro: string;
+
   @Field(() => ClassDataInput)
   class: {
     SP: string;

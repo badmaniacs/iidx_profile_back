@@ -27,6 +27,7 @@ model ProfileData {
   djName    String
   region    String
   iidxId    String
+  qpro      String
   class     Json
   arena     Json
   radar     Json
