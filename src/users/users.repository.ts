@@ -60,4 +60,12 @@ export class UsersRepository {
       where: { ...data },
     });
   }
+
+  async validUserId(data: { username: string; id: number }) {
+    return this.prisma.user.findUnique({
+      where: {
+        ...data,
+      },
+    });
+  }
 }

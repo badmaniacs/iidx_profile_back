@@ -65,9 +65,8 @@ export class UsersResolver {
       return null;
     }
     const payload = { username: user.username, sub: user.id };
-    const accessToken = this.jwtService.sign(payload); // JWT 생성
+    const accessToken = this.jwtService.sign(payload);
 
-    // 클라이언트에게 JWT 반환
     return { ...user, accessToken };
   }
 }

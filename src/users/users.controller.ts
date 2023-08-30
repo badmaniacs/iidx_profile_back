@@ -19,4 +19,9 @@ export class UsersController {
   async deletePass(@Query('uuid') uuid: string) {
     return await this.usersService.deletePass(uuid);
   }
+
+  @Post('/valid')
+  async validUserId(@Body() data: { username: string; id: number }) {
+    return await this.usersService.validUserId(data);
+  }
 }

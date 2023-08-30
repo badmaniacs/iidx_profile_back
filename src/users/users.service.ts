@@ -48,9 +48,7 @@ export class UsersService {
   }
 
   async validatePass(pass: string) {
-    console.log(pass);
     const passData = await this.redis.get(pass);
-    console.log(passData);
     if (!passData) {
       return false;
     }
@@ -59,5 +57,13 @@ export class UsersService {
 
   async deletePass(pass: string) {
     await this.redis.del(pass);
+  }
+
+  async validUserId(data: { username: string; id: number }) {
+    const user = await this.repository.validUserId(data);
+    if (!user || user.id !== data.id) {
+      return null;
+    }
+    return { id: user.id, username: user.username };
   }
 }

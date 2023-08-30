@@ -33,6 +33,7 @@ export class ProfilesService {
         DP: this.processMusicData(data.musicData.DP),
       },
       user: { connect: { id: data.userId } },
+      ver: data.ver,
     };
 
     return profileData;
