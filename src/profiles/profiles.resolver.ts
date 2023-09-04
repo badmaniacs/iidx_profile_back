@@ -1,15 +1,17 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ProfilesService } from './profiles.service';
 import { Profile } from './models/profiles.model';
-import { CreateProfileInput } from './dto/new-profile.input';
+import { CreateProfileInput, GetProfileInput } from './dto/new-profile.input';
 
 @Resolver(() => Profile)
 export class ProfilesResolver {
   constructor(private readonly profileService: ProfilesService) {}
 
   @Query(() => Profile, { nullable: true })
-  async getRecentProfileById(@Args('id') id: number): Promise<Profile | null> {
-    return this.profileService.getProfileRecentById(id);
+  async getRecentProfileById(
+    @Args('input') input: GetProfileInput,
+  ): Promise<Profile | null> {
+    return this.profileService.getProfileRecentById(input.id);
   }
 
   @Mutation(() => Profile)

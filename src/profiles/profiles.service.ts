@@ -26,8 +26,8 @@ export class ProfilesService {
       arena: data.arena,
       qpro: data.qpro,
       radar: {
-        SP: JSON.stringify(data.radar.SP),
-        DP: JSON.stringify(data.radar.DP),
+        SP: data.radar.SP,
+        DP: data.radar.DP,
       },
       musicData: {
         SP: this.processMusicData(data.musicData.SP),

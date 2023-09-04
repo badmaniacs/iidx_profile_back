@@ -1,10 +1,4 @@
-import {
-  Field,
-  GraphQLISODateTime,
-  Int,
-  ObjectType,
-  Float,
-} from '@nestjs/graphql';
+import { Field, GraphQLISODateTime, Int, ObjectType } from '@nestjs/graphql';
 import { ProfileData as ProfileDB } from '@prisma/client';
 
 enum ClassLevel {
@@ -53,52 +47,52 @@ class Music {
 
 @ObjectType()
 class Radar {
-  @Field(() => [Float])
-  NOTES: number[];
+  @Field()
+  NOTES: string;
 
-  @Field(() => [Float])
-  CHORD: number[];
+  @Field()
+  CHORD: string;
 
-  @Field(() => [Float])
-  PEAK: number[];
+  @Field()
+  PEAK: string;
 
-  @Field(() => [Float])
-  CHARGE: number[];
+  @Field()
+  CHARGE: string;
 
-  @Field(() => [Float])
-  SCRATHCH: number[];
+  @Field()
+  SCRATHCH: string;
 
-  @Field(() => [Float])
-  SOFLAN: number[];
+  @Field()
+  SOFLAN: string;
 
-  @Field(() => [Float])
-  TOTAL: number[];
+  @Field()
+  TOTAL: string;
 }
 
 @ObjectType()
 class RadarData {
-  @Field(() => Radar)
-  SP: Radar;
-  @Field(() => Radar)
-  DP: Radar;
+  @Field(() => Radar, { nullable: true })
+  SP?: Radar;
+  @Field(() => Radar, { nullable: true })
+  DP?: Radar;
 }
 
 @ObjectType()
 class ArenaData {
-  @Field()
-  SP: string;
+  @Field({ nullable: true })
+  SP?: string;
 
-  @Field()
-  DP: string;
+  @Field({ nullable: true })
+  DP?: string;
 }
 
 @ObjectType()
 class ClassData {
-  @Field()
-  SP: string;
+  @Field({ nullable: true })
+  SP?: string;
 
-  @Field()
-  DP: string;
+  @Field({ nullable: true })
+  DP?: string;
 }
 
 @ObjectType()

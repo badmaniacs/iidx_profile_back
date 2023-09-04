@@ -1,4 +1,4 @@
-import { InputType, Field, Float, Int } from '@nestjs/graphql';
+import { InputType, Field, Int } from '@nestjs/graphql';
 
 enum ClassLevel {
   NOVICE = 'NOVICE',
@@ -46,26 +46,26 @@ export class MusicDataInput {
 
 @InputType()
 class RadarDataInput {
-  @Field(() => [Float])
-  NOTES: number[];
+  @Field(() => String)
+  NOTES: string;
 
-  @Field(() => [Float])
-  CHORD: number[];
+  @Field(() => String)
+  CHORD: string;
 
-  @Field(() => [Float])
-  PEAK: number[];
+  @Field(() => String)
+  PEAK: string;
 
-  @Field(() => [Float])
-  CHARGE: number[];
+  @Field(() => String)
+  CHARGE: string;
 
-  @Field(() => [Float])
-  SCRATHCH: number[];
+  @Field(() => String)
+  SCRATHCH: string;
 
-  @Field(() => [Float])
-  SOFLAN: number[];
+  @Field(() => String)
+  SOFLAN: string;
 
-  @Field(() => [Float])
-  TOTAL: number[];
+  @Field(() => String)
+  TOTAL: string;
 }
 
 @InputType()
@@ -88,10 +88,10 @@ class ArenaDataInput {
 
 @InputType()
 export class RadarInput {
-  @Field(() => RadarDataInput)
+  @Field(() => [RadarDataInput], { name: 'SP' })
   SP: RadarDataInput;
 
-  @Field(() => RadarDataInput)
+  @Field(() => [RadarDataInput], { name: 'DP' })
   DP: RadarDataInput;
 }
 
@@ -143,4 +143,10 @@ export class CreateProfileInput {
 
   @Field()
   ver: number;
+}
+
+@InputType()
+export class GetProfileInput {
+  @Field()
+  id: number;
 }

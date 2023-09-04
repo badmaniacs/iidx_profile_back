@@ -18,6 +18,9 @@ export class ProfilesRepository {
       where: {
         userId,
       },
+      orderBy: {
+        createAt: 'desc',
+      },
     });
   }
 }
