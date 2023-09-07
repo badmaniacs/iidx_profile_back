@@ -10,7 +10,6 @@ export class CreateUserInput {
 
   @Field()
   @IsString()
-  @Length(8, 15)
   password: string;
 
   @Field()

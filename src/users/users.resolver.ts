@@ -60,13 +60,12 @@ export class UsersResolver {
   @Mutation(() => User, { nullable: true })
   async LoginUser(@Args('input') input: LoginUserInput): Promise<User | null> {
     const user = await this.userService.loginUser(input);
+    if (user) {
+      const payload = { username: user.username, sub: user.id };
+      const accessToken = this.jwtService.sign(payload);
 
-    if (!user || user.password !== input.password) {
-      return null;
+      return { ...user, accessToken };
     }
-    const payload = { username: user.username, sub: user.id };
-    const accessToken = this.jwtService.sign(payload);
-
-    return { ...user, accessToken };
+    return null;
   }
 }

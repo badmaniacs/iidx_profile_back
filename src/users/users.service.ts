@@ -4,6 +4,7 @@ import { UsersRepository } from './users.repository';
 import { CreateUserInput, LoginUserInput } from './dto/new-user.input';
 import { v4 as uuidv4 } from 'uuid';
 import { RedisClientType } from 'redis';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -13,7 +14,12 @@ export class UsersService {
   ) {}
 
   async createUser(data: CreateUserInput) {
-    const user = await this.repository.createUser(data);
+    const { password } = data;
+    const hashPassword = await bcrypt.hash(password, 10);
+    const user = await this.repository.createUser({
+      ...data,
+      password: hashPassword,
+    });
 
     return user;
   }
@@ -38,7 +44,20 @@ export class UsersService {
   }
 
   async loginUser(data: LoginUserInput) {
-    return this.repository.LoginUser(data);
+    const { password } = data;
+    const user = await this.repository.getUserByUsername(data.username); // 사용자를 검색하고,
+
+    if (!user) {
+      return null;
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (isPasswordValid) {
+      return user;
+    } else {
+      return null;
+    }
   }
 
   async generatePass(data: { username: string; id: number }) {

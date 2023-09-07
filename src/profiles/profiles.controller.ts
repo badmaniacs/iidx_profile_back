@@ -9,6 +9,9 @@ export class ProfilesController {
   @Post()
   async createProfile(@Body() data: CreateProfileInput) {
     const profile = await this.profilesService.createProfile(data);
-    return profile;
+    if (profile) {
+      return true;
+    }
+    return false;
   }
 }

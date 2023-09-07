@@ -10,9 +10,13 @@ enum ClassLevel {
 
 enum ClearType {
   NO_PLAY = 'NO_PLAY',
-  F_COMBO = 'F_COMBO',
+  FAILED = 'FAILED',
   A_CLEAR = 'A_CLEAR',
+  E_CLEAR = 'E_CLEAR',
+  CLEAR = 'CLEAR',
   H_CLEAR = 'H_CLEAR',
+  EXH_CLEAR = 'EXH_CLEAR',
+  F_COMBO = 'F_COMBO',
 }
 
 enum PlayType {
