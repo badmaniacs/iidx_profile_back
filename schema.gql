@@ -1,0 +1,157 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ArenaData {
+  DP: String
+  SP: String
+}
+
+input ArenaDataInput {
+  DP: String!
+  SP: String!
+}
+
+type ClassData {
+  DP: String
+  SP: String
+}
+
+input ClassDataInput {
+  DP: String!
+  SP: String!
+}
+
+input CreateProfileInput {
+  arena: ArenaDataInput!
+  class: ClassDataInput!
+  djName: String!
+  iidxId: String!
+  musicData: MusicInput!
+  qpro: String!
+  radar: RadarInput!
+  region: String!
+  userId: Float!
+  ver: Float!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input GetProfileInput {
+  id: Float!
+}
+
+input LoginUserInput {
+  password: String!
+  username: String!
+}
+
+type Music {
+  clear_type: String!
+  difficulty: String!
+  level: Int!
+  music_name: String!
+  play_type: String!
+  rank: String!
+  score: String!
+}
+
+type MusicData {
+  DP: [Music!]!
+  SP: [Music!]!
+}
+
+input MusicDataInput {
+  clear_type: String!
+  difficulty: String!
+  level: Int!
+  music_name: String!
+  play_type: String!
+  rank: String!
+  score: String!
+}
+
+input MusicInput {
+  DP: [MusicDataInput!]!
+  SP: [MusicDataInput!]!
+}
+
+type Mutation {
+  LoginUser(input: LoginUserInput!): User
+  createProfile(input: CreateProfileInput!): Profile!
+  createUser(input: CreateUserInput!): User!
+  deleteUser(id: Float!): User
+  updateUser(id: Float!, input: UpdateUserInput!): User
+}
+
+type Profile {
+  arena: ArenaData!
+  class: ClassData!
+  createAt: DateTime!
+  djName: String!
+  id: Int!
+  iidxId: String!
+  musicData: MusicData!
+  qpro: String!
+  radar: RadarData!
+  region: String!
+  ver: Int!
+}
+
+type Query {
+  getRecentProfileById(input: GetProfileInput!): Profile
+  getUserById(id: Float!): User
+  getUserByUsername(username: String!): User
+}
+
+type Radar {
+  CHARGE: String!
+  CHORD: String!
+  NOTES: String!
+  PEAK: String!
+  SCRATHCH: String!
+  SOFLAN: String!
+  TOTAL: String!
+}
+
+type RadarData {
+  DP: Radar
+  SP: Radar
+}
+
+input RadarDataInput {
+  CHARGE: String!
+  CHORD: String!
+  NOTES: String!
+  PEAK: String!
+  SCRATHCH: String!
+  SOFLAN: String!
+  TOTAL: String!
+}
+
+input RadarInput {
+  DP: [RadarDataInput!]!
+  SP: [RadarDataInput!]!
+}
+
+input UpdateUserInput {
+  password: String!
+}
+
+type User {
+  accessToken: String!
+  createAt: DateTime!
+  email: String!
+  id: Int!
+  password: String!
+  username: String!
+}
