@@ -14,7 +14,6 @@ import { JwtModule } from '@nestjs/jwt';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
       sortSchema: true,
-      playground: true,
       formatError: (error: GraphQLError) => {
         const originalError = error.originalError as Error;
 
