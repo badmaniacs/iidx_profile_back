@@ -1,16 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as express from 'express';
+import { urlencoded, json } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const expressApp = express();
-
-  expressApp.use(express.json({ limit: '50mb' }));
-  expressApp.use(express.urlencoded({ limit: '50mb', extended: true }));
-
-  app.use(expressApp);
+  app.use(json({ limit: '50mb' }));
+  app.use(urlencoded({ extended: true, limit: '50mb' }));
 
   app.enableCors({
     origin: [
