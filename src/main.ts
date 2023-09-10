@@ -13,6 +13,7 @@ async function bootstrap() {
       'https://pastainfo.xyz',
       'https://www.pastainfo.xyz',
       'https://pastainfo.vercel.app',
+      'https://p.eagate.573.jp',
     ],
     credentials: false,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
