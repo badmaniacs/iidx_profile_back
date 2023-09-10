@@ -1,20 +1,21 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { urlencoded, json } from 'body-parser';
+import { urlencoded, json } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { rawBody: true });
 
   app.use(json({ limit: '50mb' }));
-  app.use(urlencoded({ limit: '50mb', extended: true }));
+  app.use(urlencoded({ extended: true, limit: '50mb' }));
 
   app.enableCors({
     origin: [
       'https://pastainfo.xyz',
       'https://www.pastainfo.xyz',
       'https://pastainfo.vercel.app',
+      'https://p.eagate.573.jp',
     ],
-    credentials: true,
+    credentials: false,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   });
 
