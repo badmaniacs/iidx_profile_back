@@ -10,7 +10,7 @@ async function bootstrap() {
       'https://pastainfo.vercel.app',
       'https://p.eagate.573.jp',
     ],
-    credentials: true,
+    credentials: false,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   });
   await app.listen(3000);
