@@ -14,6 +14,7 @@ async function bootstrap() {
       'https://www.pastainfo.xyz',
       'https://pastainfo.vercel.app',
       'https://p.eagate.573.jp',
+      'https://iidx-profile-front-git-dev-badmaniacs.vercel.app',
     ],
     credentials: false,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
