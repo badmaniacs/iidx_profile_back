@@ -16,7 +16,7 @@ async function bootstrap() {
       'https://p.eagate.573.jp',
       'https://iidx-profile-front-git-dev-badmaniacs.vercel.app',
       'http://localhost:3001',
-      'http://121.160.17.53',
+      'http://121.160.17.53:3000',
     ],
     credentials: false,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
