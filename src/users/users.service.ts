@@ -45,7 +45,7 @@ export class UsersService {
 
   async loginUser(data: LoginUserInput) {
     const { password } = data;
-    const user = await this.repository.getUserByUsername(data.username); // 사용자를 검색하고,
+    const user = await this.repository.getUserByUsername(data.username);
 
     if (!user) {
       return null;
